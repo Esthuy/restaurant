@@ -5,8 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-//@Builder
-@AllArgsConstructor
+@Builder
 public class ReviewDTO {
 
     private int id;
