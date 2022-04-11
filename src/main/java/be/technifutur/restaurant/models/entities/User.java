@@ -1,5 +1,7 @@
-package be.technifutur.restaurant.models;
+package be.technifutur.restaurant.models.entities;
 
+import be.technifutur.restaurant.models.entities.Restaurant;
+import be.technifutur.restaurant.models.entities.Review;
 import lombok.Builder;
 import lombok.Data;
 
