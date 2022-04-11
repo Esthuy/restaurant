@@ -1,10 +1,12 @@
 package be.technifutur.restaurant.models.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
+//@Builder
+@AllArgsConstructor
 public class ReviewDTO {
 
     private int id;
