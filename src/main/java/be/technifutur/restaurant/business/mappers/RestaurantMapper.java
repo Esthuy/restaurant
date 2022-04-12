@@ -1,7 +1,6 @@
 package be.technifutur.restaurant.business.mappers;
 
 import be.technifutur.restaurant.models.dto.RestaurantDTO;
-import be.technifutur.restaurant.models.dto.ReviewDTO;
 import be.technifutur.restaurant.models.entities.Restaurant;
 import be.technifutur.restaurant.models.entities.Review;
 import be.technifutur.restaurant.models.entities.User;
