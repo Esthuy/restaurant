@@ -26,4 +26,13 @@ public class RestaurantDTO {
         private int id;
         private String name;
     }
+
+    @AllArgsConstructor
+    @Data
+    public static class ReviewDTO{
+        private int id;
+        private String title;
+        private String comment;
+        private int stars;
+    }
 }

@@ -15,4 +15,19 @@ public class ReviewDTO {
     private String comment;
     private int stars;
 
+    @AllArgsConstructor
+    @Data
+    public static class UserDTO{
+        private int id;
+        private String name;
+    }
+
+    @AllArgsConstructor
+    @Data
+    public static class RestaurantDTO{
+        private int id;
+        private String name;
+    }
+
+
 }

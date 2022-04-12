@@ -1,5 +1,6 @@
 package be.technifutur.restaurant.models.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,5 +18,21 @@ public class UserDTO {
     private Date birthdate;
     private List<ReviewDTO> reviews;
     private List<RestaurantDTO> favorites;
+
+    @AllArgsConstructor
+    @Data
+    public static class ReviewDTO{
+        private int id;
+        private String title;
+        private String comment;
+        private int stars;
+    }
+
+    @AllArgsConstructor
+    @Data
+    public static class RestaurantDTO{
+        private int id;
+        private String name;
+    }
 
 }

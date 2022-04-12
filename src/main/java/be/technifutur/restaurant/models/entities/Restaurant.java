@@ -1,15 +1,20 @@
 package be.technifutur.restaurant.models.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Builder
 @Entity
 @Table(name = "restaurant")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Restaurant {
 
     @Id
@@ -32,10 +37,11 @@ public class Restaurant {
     @Column(nullable = false, name = "restaurant_phoneNumber")
     private String phoneNumber;
 
-    @OneToMany
-    private List<Review> reviews;
+    @OneToMany(mappedBy = "restaurant")
+    private List<Review> reviews = new ArrayList<>();
 
-    private List<User> favoriteOf;
+    @ManyToMany
+    private List<User> favoriteOf = new ArrayList<>();
 
 
 }

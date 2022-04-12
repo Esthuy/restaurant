@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class RestaurantMapper {
 
-    public RestaurantDTO entityToDto(Restaurant entity){
+    public RestaurantDTO entityToDTO(Restaurant entity){
 
         if (entity == null)
             return null;
@@ -21,12 +21,13 @@ public class RestaurantMapper {
         List<User> favoriteOf = entity.getFavoriteOf();
         List<RestaurantDTO.UserDTO> favoriteOfDto =
                 favoriteOf == null ? null :
-                        favoriteOf.stream().map(user -> new RestaurantDTO().UserDTO(user.getId(), user.getName()).toList());
+                        favoriteOf.stream().map((user -> new RestaurantDTO.UserDTO(user.getId(), user.getName()))).toList();
+
 
         List<Review> reviews = entity.getReviews();
-        List<ReviewDTO> reviewDTOS =
+        List<RestaurantDTO.ReviewDTO> reviewDTOS =
                 reviews == null ? null :
-                        reviews.stream().map(review -> new ReviewDTO(review.getId(), review.getUser(), review.getRestaurant(), review.getComment(), review.getTitle(), review.getStars()));
+                        reviews.stream().map(review -> new RestaurantDTO.ReviewDTO(review.getId(), review.getTitle(), review.getComment(), review.getStars())).toList();
 
         return RestaurantDTO.builder()
                 .id(entity.getId())

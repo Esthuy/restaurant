@@ -1,0 +1,9 @@
+spring:
+    datasource:
+        url: jdbc:h2:mem:restaurant_db
+        username: user
+        password: pass
+    h2:
+        console:
+            enabled: true
+            path: /h2

@@ -1,7 +1,9 @@
 package be.technifutur.restaurant.models.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "review")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Review {
 
     @Id
@@ -18,6 +22,7 @@ public class Review {
 
     @ManyToOne
     private User user;
+
     @ManyToOne
     private Restaurant restaurant;
 

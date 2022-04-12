@@ -2,8 +2,10 @@ package be.technifutur.restaurant.models.entities;
 
 import be.technifutur.restaurant.models.entities.Restaurant;
 import be.technifutur.restaurant.models.entities.Review;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +15,8 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "user")
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -29,10 +33,10 @@ public class User {
     @Column(name = "user_birthdate", nullable = false)
     private Date birthdate;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
-    @OneToMany
+    @ManyToMany(mappedBy = "favoriteOf")
     private List<Restaurant> favorites;
 
 }
