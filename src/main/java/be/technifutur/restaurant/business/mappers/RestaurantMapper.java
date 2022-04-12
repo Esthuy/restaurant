@@ -50,6 +50,7 @@ public class RestaurantMapper {
                 .address(form.getAddress())
                 .description(form.getDescription())
                 .phoneNumber(form.getPhoneNumber())
+                .typeOfFood(form.getTypeOfFood())
                 .id(form.getId())
                 .favoriteOf(form.getFavoriteOf())
                 .reviews(form.getReviews())
