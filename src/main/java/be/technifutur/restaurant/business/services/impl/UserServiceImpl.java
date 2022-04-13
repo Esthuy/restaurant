@@ -11,6 +11,7 @@ import be.technifutur.restaurant.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,6 +44,14 @@ public class UserServiceImpl implements UserService {
                 .map(mapper::entityToDTO)
                 .toList();
     }
+
+//    @Override
+//    public UserDTO getOneByMail(String mail) {
+//         User usr = repository.findAll().stream()
+//                .filter(user -> user.getEmail().equals(mail)).findFirst().orElseThrow();
+//
+//         return mapper.entityToDTO(usr);
+//    }
 
     @Override
     public UserDTO update(int id, UserForm form) {

@@ -1,9 +1,7 @@
 package be.technifutur.restaurant.controllers;
 
 import be.technifutur.restaurant.business.services.UserService;
-import be.technifutur.restaurant.models.dto.ReviewDTO;
 import be.technifutur.restaurant.models.dto.UserDTO;
-import be.technifutur.restaurant.models.forms.ReviewForm;
 import be.technifutur.restaurant.models.forms.UserForm;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +31,12 @@ public class UserController {
     public ResponseEntity<UserDTO> getOne (@PathVariable int id){
         return ResponseEntity.ok(service.getOne(id));
     }
+
+//    // GET - http://localhost:8080/user/mail
+//    @GetMapping("/mail")
+//    public ResponseEntity<UserDTO> getOneByMail(@RequestBody String mail){
+//        return ResponseEntity.ok(service.getOneByMail(mail));
+//    }
 
 
     // DELETE -  http://localhost:8080/user/id

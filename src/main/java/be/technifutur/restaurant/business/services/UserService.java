@@ -14,6 +14,7 @@ public interface UserService {
     // READ
     public UserDTO getOne(int id);
     public List<UserDTO> getAll();
+//    public UserDTO getOneByMail(String mail);
 
     // UPDATE
     public UserDTO update(int id, UserForm form);
@@ -21,4 +22,6 @@ public interface UserService {
 
     // DELETE
     public UserDTO delete(int id);
+
+
 }
