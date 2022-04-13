@@ -44,7 +44,7 @@ public class RestaurantController {
     // POST -http://localhost:8080/restaurant/add
     @PostMapping("/add")
     public ResponseEntity<RestaurantDTO> insert( @RequestBody RestaurantForm form){
-        return ResponseEntity.ok(  service.insert(form)) ;
+        return ResponseEntity.ok( service.insert(form)) ;
     }
 
 
