@@ -8,9 +8,11 @@ import be.technifutur.restaurant.models.dto.ReviewDTO;
 import be.technifutur.restaurant.models.entities.Review;
 import be.technifutur.restaurant.models.forms.ReviewForm;
 import be.technifutur.restaurant.repositories.ReviewRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewMapper mapper;

@@ -13,6 +13,7 @@ public class UserForm {
     private int id;
     private String name;
     private String email;
+    private String password;
     private Date birthdate;
     private List<Review> reviews;
     private List<Restaurant> favorites;

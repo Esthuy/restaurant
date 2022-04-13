@@ -33,6 +33,7 @@ public class UserMapper {
                 .email(entity.getEmail())
                 .favorites(favoritesDTO)
                 .reviews(reviewsDTO)
+                .password(entity.getPassword())
                 .build();
     }
 
@@ -48,6 +49,7 @@ public class UserMapper {
                 .email(form.getEmail())
                 .favorites(form.getFavorites())
                 .reviews(form.getReviews())
+                .password(form.getPassword())
                 .build();
     }
 }

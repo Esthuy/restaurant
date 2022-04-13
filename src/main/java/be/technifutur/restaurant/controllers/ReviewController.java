@@ -1,9 +1,7 @@
 package be.technifutur.restaurant.controllers;
 
 import be.technifutur.restaurant.business.services.ReviewService;
-import be.technifutur.restaurant.models.dto.RestaurantDTO;
 import be.technifutur.restaurant.models.dto.ReviewDTO;
-import be.technifutur.restaurant.models.forms.RestaurantForm;
 import be.technifutur.restaurant.models.forms.ReviewForm;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

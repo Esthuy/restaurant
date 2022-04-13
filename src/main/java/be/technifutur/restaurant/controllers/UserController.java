@@ -45,7 +45,7 @@ public class UserController {
     // POST -http://localhost:8080/user/add
     @PostMapping("/add")
     public ResponseEntity<UserDTO> insert( @RequestBody UserForm form){
-        return ResponseEntity.ok(  service.insert(form)) ;
+        return ResponseEntity.ok(  service.insert(form));
     }
 
 
