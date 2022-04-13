@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
 //    @Override
 //    public UserDTO getOneByMail(String mail) {
-//         User usr = repository.findAll().stream()
+//         User usr = repository.findAll().stream()e
 //                .filter(user -> user.getEmail().equals(mail)).findFirst().orElseThrow();
 //
 //         return mapper.entityToDTO(usr);

@@ -1,20 +1,29 @@
 package be.technifutur.restaurant.utils;
 
 import be.technifutur.restaurant.models.entities.Restaurant;
+import be.technifutur.restaurant.models.entities.Review;
+import be.technifutur.restaurant.models.entities.User;
 import be.technifutur.restaurant.repositories.RestaurantRepository;
+import be.technifutur.restaurant.repositories.ReviewRepository;
+import be.technifutur.restaurant.repositories.UserRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 
 
 @Component
 public class DatabaseFiller implements InitializingBean {
 
     private final RestaurantRepository restaurantRepository;
+    private final ReviewRepository reviewRepository;
+    private final UserRepository userRepository;
 
 
-    public DatabaseFiller(RestaurantRepository restaurantRepository) {
+    public DatabaseFiller(RestaurantRepository restaurantRepository, ReviewRepository reviewRepository, UserRepository userRepository) {
         this.restaurantRepository = restaurantRepository;
+        this.reviewRepository = reviewRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -39,5 +48,24 @@ public class DatabaseFiller implements InitializingBean {
                 .typeOfFood("Belge")
                 .build();
         restaurantRepository.save(restaurant);
+
+        User user = User.builder()
+                .birthdate(new Date())
+                .email("blalba@gmail.com")
+                .name("toto")
+                .password("pass")
+                .build();
+
+        userRepository.save(user);
+
+        Review review = Review.builder()
+                .comment("très bon")
+                .restaurant(restaurant)
+                .stars(3)
+                .title("délicieux")
+                .user(user)
+                .build();
+
+        reviewRepository.save(review);
     }
 }
