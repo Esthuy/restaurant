@@ -19,7 +19,7 @@ public class ReviewDTO {
     @Data
     public static class UserDTO{
         private int id;
-        private String name;
+        private String username;
     }
 
     @AllArgsConstructor

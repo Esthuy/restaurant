@@ -20,7 +20,7 @@ public class RestaurantMapper {
         List<User> favoriteOf = entity.getFavoriteOf();
         List<RestaurantDTO.UserDTO> favoriteOfDto =
                 favoriteOf == null ? null :
-                        favoriteOf.stream().map((user -> new RestaurantDTO.UserDTO(user.getId(), user.getName()))).toList();
+                        favoriteOf.stream().map((user -> new RestaurantDTO.UserDTO(user.getId(), user.getUsername()))).toList();
 
 
         List<Review> reviews = entity.getReviews();

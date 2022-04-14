@@ -22,7 +22,7 @@ public class ReviewMapper {
         User user = entity.getUser();
         ReviewDTO.UserDTO userDTO =
                 user == null ? null :
-                        new ReviewDTO.UserDTO(user.getId(), user.getName());
+                        new ReviewDTO.UserDTO(user.getId(), user.getUsername());
 
 
         Restaurant restaurant = entity.getRestaurant();

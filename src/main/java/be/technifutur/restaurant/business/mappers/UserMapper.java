@@ -28,7 +28,7 @@ public class UserMapper {
 
         return UserDTO.builder()
                 .id(entity.getId())
-                .name(entity.getName())
+                .username(entity.getUsername())
                 .birthdate(entity.getBirthdate())
                 .email(entity.getEmail())
                 .favorites(favoritesDTO)
@@ -43,7 +43,7 @@ public class UserMapper {
         }
 
         return User.builder()
-                .name(form.getName())
+                .username(form.getUsername())
                 .birthdate(form.getBirthdate())
                 .id(form.getId())
                 .email(form.getEmail())

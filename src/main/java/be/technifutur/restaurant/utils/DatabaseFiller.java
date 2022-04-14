@@ -7,6 +7,7 @@ import be.technifutur.restaurant.repositories.RestaurantRepository;
 import be.technifutur.restaurant.repositories.ReviewRepository;
 import be.technifutur.restaurant.repositories.UserRepository;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -18,12 +19,14 @@ public class DatabaseFiller implements InitializingBean {
     private final RestaurantRepository restaurantRepository;
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
+    private final PasswordEncoder encoder;
 
 
-    public DatabaseFiller(RestaurantRepository restaurantRepository, ReviewRepository reviewRepository, UserRepository userRepository) {
+    public DatabaseFiller(RestaurantRepository restaurantRepository, ReviewRepository reviewRepository, UserRepository userRepository, PasswordEncoder encoder) {
         this.restaurantRepository = restaurantRepository;
         this.reviewRepository = reviewRepository;
         this.userRepository = userRepository;
+        this.encoder = encoder;
     }
 
     @Override
@@ -49,11 +52,13 @@ public class DatabaseFiller implements InitializingBean {
                 .build();
         restaurantRepository.save(restaurant);
 
+
         User user = User.builder()
                 .birthdate(new Date())
                 .email("blalba@gmail.com")
-                .name("toto")
-                .password("pass")
+                .username("toto")
+                .isNotLocked(true)
+                .password(encoder.encode("pass"))
                 .build();
 
         userRepository.save(user);

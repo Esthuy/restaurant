@@ -8,13 +8,16 @@ import be.technifutur.restaurant.models.dto.UserDTO;
 import be.technifutur.restaurant.models.entities.User;
 import be.technifutur.restaurant.models.forms.UserForm;
 import be.technifutur.restaurant.repositories.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserMapper mapper;
     private final UserRepository repository;
@@ -58,7 +61,7 @@ public class UserServiceImpl implements UserService {
         User entity = repository.findById(id)
                 .orElseThrow( () -> new ElementNotFoundException(id, RestaurantDTO.class));
 
-        entity.setName(form.getName());
+        entity.setUsername(form.getUsername());
         entity.setBirthdate(form.getBirthdate());
         entity.setEmail(form.getEmail());
         entity.setFavorites(form.getFavorites());
@@ -75,5 +78,11 @@ public class UserServiceImpl implements UserService {
         UserDTO dto = getOne(id);
         repository.deleteById(id);
         return dto;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return repository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("username not found"));
     }
 }
