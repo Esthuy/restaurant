@@ -24,7 +24,8 @@ public class UserMapper {
         List<Review> reviews = entity.getReviews();
         List<UserDTO.ReviewDTO> reviewsDTO =
                 reviews == null ? null :
-                        reviews.stream().map((review -> new UserDTO.ReviewDTO(review.getId(), review.getTitle(), review.getComment(), review.getStars()))).toList();
+                        reviews.stream().map((review -> new UserDTO.ReviewDTO(review.getId(), review.getTitle(), review.getComment(), review.getStars(),
+                                new UserDTO.RestaurantDTO(review.getRestaurant().getId(), review.getRestaurant().getName())))).toList();
 
         return UserDTO.builder()
                 .id(entity.getId())
