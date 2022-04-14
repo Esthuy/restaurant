@@ -32,11 +32,11 @@ public class UserController {
         return ResponseEntity.ok(service.getOne(id));
     }
 
-//    // GET - http://localhost:8080/user/mail
-//    @GetMapping("/mail")
-//    public ResponseEntity<UserDTO> getOneByMail(@RequestBody String mail){
-//        return ResponseEntity.ok(service.getOneByMail(mail));
-//    }
+    // GET - http://localhost:8080/user/username/username
+    @GetMapping("/username/{username}")
+    public ResponseEntity<UserDTO> getOneByUsername(@PathVariable String username){
+        return ResponseEntity.ok(service.getOneByUsername(username));
+    }
 
 
     // DELETE -  http://localhost:8080/user/id

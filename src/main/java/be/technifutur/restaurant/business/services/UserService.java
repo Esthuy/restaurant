@@ -14,7 +14,7 @@ public interface UserService {
     // READ
     public UserDTO getOne(int id);
     public List<UserDTO> getAll();
-//    public UserDTO getOneByMail(String mail);
+    public UserDTO getOneByUsername(String username);
 
     // UPDATE
     public UserDTO update(int id, UserForm form);

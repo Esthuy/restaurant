@@ -11,6 +11,7 @@ import be.technifutur.restaurant.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,15 +22,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserMapper mapper;
     private final UserRepository repository;
+    private final PasswordEncoder encoder;
 
-    public UserServiceImpl(UserMapper mapper, UserRepository repository) {
+    public UserServiceImpl(UserMapper mapper, UserRepository repository, PasswordEncoder encoder) {
         this.mapper = mapper;
         this.repository = repository;
+        this.encoder = encoder;
     }
 
     @Override
     public UserDTO insert(UserForm form) {
         User entity = mapper.formToEntity(form);
+        entity.setNotLocked(true);
+        entity.setPassword(encoder.encode(form.getPassword()));
         entity = repository.save(entity);
         return mapper.entityToDTO(entity);
     }
@@ -48,13 +53,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .toList();
     }
 
-//    @Override
-//    public UserDTO getOneByMail(String mail) {
-//         User usr = repository.findAll().stream()e
-//                .filter(user -> user.getEmail().equals(mail)).findFirst().orElseThrow();
-//
-//         return mapper.entityToDTO(usr);
-//    }
+    @Override
+    public UserDTO getOneByUsername(String username) {
+        return repository.findAll().stream()
+                .filter(user -> user.getUsername().equals(username))
+                .map(mapper::entityToDTO).findAny().orElseThrow();
+    }
 
     @Override
     public UserDTO update(int id, UserForm form) {
