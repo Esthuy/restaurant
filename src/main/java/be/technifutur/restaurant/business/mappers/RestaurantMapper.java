@@ -26,7 +26,8 @@ public class RestaurantMapper {
         List<Review> reviews = entity.getReviews();
         List<RestaurantDTO.ReviewDTO> reviewDTOS =
                 reviews == null ? null :
-                        reviews.stream().map(review -> new RestaurantDTO.ReviewDTO(review.getId(), review.getTitle(), review.getComment(), review.getStars())).toList();
+                        reviews.stream().map(review -> new RestaurantDTO.ReviewDTO(review.getId(), review.getTitle(), review.getComment(), review.getStars(),
+                                new RestaurantDTO.UserDTO(review.getUser().getId(), review.getUser().getUsername()))).toList();
 
         return RestaurantDTO.builder()
                 .id(entity.getId())

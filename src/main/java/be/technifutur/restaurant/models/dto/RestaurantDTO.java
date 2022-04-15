@@ -34,5 +34,6 @@ public class RestaurantDTO {
         private String title;
         private String comment;
         private int stars;
+        private UserDTO userDTO;
     }
 }
