@@ -27,7 +27,7 @@ public class UserDTO {
         private String title;
         private String comment;
         private int stars;
-        private RestaurantDTO restaurantDTO;
+        private RestaurantDTO restaurant;
     }
 
     @AllArgsConstructor
