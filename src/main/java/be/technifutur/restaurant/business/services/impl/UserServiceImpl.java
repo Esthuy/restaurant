@@ -3,6 +3,7 @@ package be.technifutur.restaurant.business.services.impl;
 import be.technifutur.restaurant.business.mappers.UserMapper;
 import be.technifutur.restaurant.business.services.UserService;
 import be.technifutur.restaurant.exceptions.ElementNotFoundException;
+import be.technifutur.restaurant.exceptions.UsernameAlreadyExistException;
 import be.technifutur.restaurant.models.dto.RestaurantDTO;
 import be.technifutur.restaurant.models.dto.UserDTO;
 import be.technifutur.restaurant.models.entities.User;
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDTO insert(UserForm form) {
+    public UserDTO insert(UserForm form){
         User entity = mapper.formToEntity(form);
         entity.setNotLocked(true);
         entity.setPassword(encoder.encode(form.getPassword()));
@@ -83,6 +84,22 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         repository.deleteById(id);
         return dto;
     }
+
+//    @Override
+//    public boolean doesUsernameExist(String username) {
+//       List<User> list =  repository.findAll().stream()
+//                .filter(user -> user.getUsername().equals(username)).toList();
+//
+//        return list.size() > 0;
+//    }
+//
+//    @Override
+//    public boolean doesMailExist(String mail) {
+//        List<User> list =  repository.findAll().stream()
+//                .filter(user -> user.getEmail().equals(mail)).toList();
+//
+//        return list.size() > 0;
+//    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

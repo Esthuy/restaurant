@@ -1,6 +1,8 @@
 package be.technifutur.restaurant.controllers;
 
 import be.technifutur.restaurant.business.services.UserService;
+import be.technifutur.restaurant.exceptions.ElementNotFoundException;
+import be.technifutur.restaurant.exceptions.UsernameAlreadyExistException;
 import be.technifutur.restaurant.models.dto.UserDTO;
 import be.technifutur.restaurant.models.forms.UserForm;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +34,7 @@ public class UserController {
         return ResponseEntity.ok(service.getOne(id));
     }
 
+
     // GET - http://localhost:8080/user/username/username
     @GetMapping("/username/{username}")
     public ResponseEntity<UserDTO> getOneByUsername(@PathVariable String username){
@@ -49,8 +52,10 @@ public class UserController {
     // POST -http://localhost:8080/user/add
     @PostMapping("/add")
     public ResponseEntity<UserDTO> insert( @RequestBody UserForm form){
-        return ResponseEntity.ok(  service.insert(form));
+        return ResponseEntity.ok(service.insert(form));
     }
+
+
 
 
     // PUT - http://localhost:8080/user/id

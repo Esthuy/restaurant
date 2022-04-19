@@ -31,10 +31,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(encoder);
-//        auth.inMemoryAuthentication()
-//                .withUser("user").password(encoder.encode("pass")).roles("USER")
-//                .and()
-//                .withUser("admin").password(encoder.encode("pass")).roles("USER", "ADMIN");
     }
 
     @Override
@@ -51,17 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .frameOptions().disable();
 
         http.authorizeRequests()
-//                .antMatchers("/demo/for-all").permitAll()
-//                .antMatchers(HttpMethod.GET, "/hotel/**").authenticated()
-//                .antMatchers(HttpMethod.GET, "/gerant/**").hasAnyAuthority("USER", "ADMIN")
-////                .antMatchers(HttpMethod.GET, "/gerant/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
-//                .antMatchers(HttpMethod.POST).hasAuthority("ADMIN")
-//                .antMatchers(HttpMethod.DELETE).hasAuthority("ADMIN")
-//                .antMatchers(HttpMethod.PUT).hasAuthority("ADMIN")
-//                .antMatchers(HttpMethod.PATCH).hasAuthority("ADMIN")
-//                .antMatchers("/demo/for-connected").authenticated()
-//                .antMatchers("/demo/for-user").hasAuthority("USER")
-//                .antMatchers("/demo/for-admin").hasAuthority("ADMIN")
                 .anyRequest().permitAll();
 
     }
