@@ -52,6 +52,24 @@ public class RestaurantServiceImpl implements RestaurantService {
                 .toList();
     }
 
+    @Override
+    public List<RestaurantDTO> getByAddress(String address) {
+        return repository.findAll().stream()
+                .filter(restaurant -> restaurant.getAddress().toLowerCase(Locale.ROOT).contains(address.toLowerCase(Locale.ROOT)))
+                .map(mapper::entityToDTO)
+                .toList();
+    }
+
+
+    @Override
+    public List<RestaurantDTO> getByTypeOfFood(String typeOfFood) {
+        return repository.findAll().stream()
+                .filter(restaurant -> restaurant.getTypeOfFood().toLowerCase(Locale.ROOT).contains(typeOfFood.toLowerCase(Locale.ROOT)))
+                .map(mapper::entityToDTO)
+                .toList();
+    }
+
+
 
     @Override
     public RestaurantDTO update(int id, RestaurantForm form) {

@@ -14,6 +14,8 @@ public interface RestaurantService {
     public RestaurantDTO getOne(int id);
     public List<RestaurantDTO> getAll();
     public List<RestaurantDTO> getByName(String name);
+    public List<RestaurantDTO> getByAddress(String address);
+    public List<RestaurantDTO> getByTypeOfFood(String typeOfFood);
 
     // UPDATE
     public RestaurantDTO update(int id, RestaurantForm form);
