@@ -10,6 +10,7 @@ import be.technifutur.restaurant.repositories.RestaurantRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -39,6 +40,14 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<RestaurantDTO> getAll() {
         return repository.findAll().stream()
+                .map(mapper::entityToDTO)
+                .toList();
+    }
+
+    @Override
+    public List<RestaurantDTO> getByName(String name) {
+        return repository.findAll().stream()
+                .filter(restaurant -> restaurant.getName().toLowerCase(Locale.ROOT).contains(name.toLowerCase(Locale.ROOT)))
                 .map(mapper::entityToDTO)
                 .toList();
     }

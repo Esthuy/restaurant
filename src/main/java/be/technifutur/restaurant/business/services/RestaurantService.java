@@ -13,6 +13,7 @@ public interface RestaurantService {
     // READ
     public RestaurantDTO getOne(int id);
     public List<RestaurantDTO> getAll();
+    public List<RestaurantDTO> getByName(String name);
 
     // UPDATE
     public RestaurantDTO update(int id, RestaurantForm form);

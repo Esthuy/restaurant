@@ -33,6 +33,12 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurantDTO);
     }
 
+    // GET - http://localhost:8080/restaurant/name
+    @GetMapping("/search/{name}")
+    public List<RestaurantDTO> getByName (@PathVariable String name){
+        return service.getByName(name);
+    }
+
 
     // DELETE -  http://localhost:8080/restaurant/id
     @DeleteMapping("/{id}")
