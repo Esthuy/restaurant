@@ -52,6 +52,14 @@ public class DatabaseFiller implements InitializingBean {
                 .build();
         restaurantRepository.save(restaurant);
 
+        restaurant = Restaurant.builder()
+                .name("Smile")
+                .address("Place de la gentillesse")
+                .description("Restaurant chaleureux")
+                .phoneNumber("0498/65.45.25")
+                .typeOfFood("Italien")
+                .build();
+        restaurantRepository.save(restaurant);
 
         User user = User.builder()
                 .birthdate(new Date())
@@ -64,6 +72,35 @@ public class DatabaseFiller implements InitializingBean {
         userRepository.save(user);
 
         Review review = Review.builder()
+                .comment("Amazing")
+                .restaurant(restaurant)
+                .stars(5)
+                .title("The besy")
+                .user(user)
+                .build();
+
+        reviewRepository.save(review);
+
+        restaurant = Restaurant.builder()
+                .name("Dragibus")
+                .address("Avenue du bonbon")
+                .description("Restaurant chic")
+                .phoneNumber("0498/45.68.75")
+                .typeOfFood("Italien")
+                .build();
+        restaurantRepository.save(restaurant);
+
+        user = User.builder()
+                .birthdate(new Date())
+                .email("coucou@yahoo.fr")
+                .username("tata")
+                .isNotLocked(true)
+                .password(encoder.encode("psw"))
+                .build();
+
+        userRepository.save(user);
+
+        review = Review.builder()
                 .comment("très bon")
                 .restaurant(restaurant)
                 .stars(3)
@@ -72,5 +109,7 @@ public class DatabaseFiller implements InitializingBean {
                 .build();
 
         reviewRepository.save(review);
+
+
     }
 }

@@ -79,7 +79,7 @@ public class RestaurantServiceImpl implements RestaurantService {
             total += reviews.stream().mapToInt(RestaurantDTO.ReviewDTO::getStars).sum();
             return total / reviews.size();
         } else{
-            return 100;
+            return -1;
         }
     }
 
