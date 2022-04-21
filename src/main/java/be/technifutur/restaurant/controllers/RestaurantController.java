@@ -51,6 +51,12 @@ public class RestaurantController {
         return service.getByTypeOfFood(typeOfFood);
     }
 
+    // GET - http://localhost:8080/restaurant/stars/id
+    @GetMapping("/stars/{id}")
+    public int getStarAverage(@PathVariable int id){
+        return service.getStarAverage(id);
+    }
+
 
 
     // DELETE -  http://localhost:8080/restaurant/id

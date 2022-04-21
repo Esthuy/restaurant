@@ -4,6 +4,7 @@ import be.technifutur.restaurant.business.mappers.RestaurantMapper;
 import be.technifutur.restaurant.business.services.RestaurantService;
 import be.technifutur.restaurant.exceptions.ElementNotFoundException;
 import be.technifutur.restaurant.models.dto.RestaurantDTO;
+import be.technifutur.restaurant.models.dto.ReviewDTO;
 import be.technifutur.restaurant.models.entities.Restaurant;
 import be.technifutur.restaurant.models.forms.RestaurantForm;
 import be.technifutur.restaurant.repositories.RestaurantRepository;
@@ -69,6 +70,18 @@ public class RestaurantServiceImpl implements RestaurantService {
                 .toList();
     }
 
+    @Override
+    public int getStarAverage(int id) {
+        int total = 0;
+
+        List<RestaurantDTO.ReviewDTO> reviews  = getOne(id).getReviews();
+        if(reviews.size() > 0) {
+            total += reviews.stream().mapToInt(RestaurantDTO.ReviewDTO::getStars).sum();
+            return total / reviews.size();
+        } else{
+            return 100;
+        }
+    }
 
 
     @Override
