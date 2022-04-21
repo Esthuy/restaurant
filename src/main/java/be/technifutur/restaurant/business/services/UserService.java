@@ -24,8 +24,8 @@ public interface UserService {
     public UserDTO delete(int id);
 
 
-//    public boolean doesUsernameExist(String username);
-//    public boolean doesMailExist(String mail);
+    public boolean doesUsernameExist(String username);
+    public boolean doesMailExist(String mail);
 
 
 }

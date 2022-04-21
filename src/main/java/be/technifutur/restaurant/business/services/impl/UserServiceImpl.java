@@ -3,6 +3,7 @@ package be.technifutur.restaurant.business.services.impl;
 import be.technifutur.restaurant.business.mappers.UserMapper;
 import be.technifutur.restaurant.business.services.UserService;
 import be.technifutur.restaurant.exceptions.ElementNotFoundException;
+import be.technifutur.restaurant.exceptions.MailAlreadyExistException;
 import be.technifutur.restaurant.exceptions.UsernameAlreadyExistException;
 import be.technifutur.restaurant.models.dto.RestaurantDTO;
 import be.technifutur.restaurant.models.dto.UserDTO;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 
 
 @Service
@@ -33,11 +35,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDTO insert(UserForm form){
-        User entity = mapper.formToEntity(form);
-        entity.setNotLocked(true);
-        entity.setPassword(encoder.encode(form.getPassword()));
-        entity = repository.save(entity);
-        return mapper.entityToDTO(entity);
+        if(!doesUsernameExist(form.getUsername())){
+            if(!doesMailExist(form.getEmail())){
+                User entity = mapper.formToEntity(form);
+                entity.setNotLocked(true);
+                entity.setPassword(encoder.encode(form.getPassword()));
+                entity = repository.save(entity);
+
+                return mapper.entityToDTO(entity);
+            }else{
+                throw new MailAlreadyExistException(RestaurantDTO.class);
+            }
+        }else {
+            throw new UsernameAlreadyExistException(RestaurantDTO.class);
+        }
     }
 
     @Override
@@ -85,21 +96,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return dto;
     }
 
-//    @Override
-//    public boolean doesUsernameExist(String username) {
-//       List<User> list =  repository.findAll().stream()
-//                .filter(user -> user.getUsername().equals(username)).toList();
-//
-//        return list.size() > 0;
-//    }
-//
-//    @Override
-//    public boolean doesMailExist(String mail) {
-//        List<User> list =  repository.findAll().stream()
-//                .filter(user -> user.getEmail().equals(mail)).toList();
-//
-//        return list.size() > 0;
-//    }
+    @Override
+    public boolean doesUsernameExist(String username) {
+       List<User> list =  repository.findAll().stream()
+                .filter(user -> user.getUsername().toLowerCase(Locale.ROOT).equals(username.toLowerCase(Locale.ROOT))).toList();
+
+        return list.size() > 0;
+    }
+
+    @Override
+    public boolean doesMailExist(String mail) {
+        List<User> list =  repository.findAll().stream()
+                .filter(user -> user.getEmail().toLowerCase(Locale.ROOT).equals(mail.toLowerCase(Locale.ROOT))).toList();
+
+        return list.size() > 0;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
