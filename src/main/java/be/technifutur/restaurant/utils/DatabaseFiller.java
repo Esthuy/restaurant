@@ -75,7 +75,7 @@ public class DatabaseFiller implements InitializingBean {
                 .comment("Amazing")
                 .restaurant(restaurant)
                 .stars(5)
-                .title("The besy")
+                .title("The best")
                 .user(user)
                 .build();
 

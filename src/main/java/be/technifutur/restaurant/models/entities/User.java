@@ -39,7 +39,7 @@ public class User implements UserDetails {
     @Column(name = "user_birthdate", nullable = false)
     private Date birthdate;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Review> reviews;
 
     @ManyToMany(mappedBy = "favoriteOf")
